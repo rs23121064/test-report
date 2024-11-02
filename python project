@@ -1,0 +1,12 @@
+def find_union(a,b):
+  uni_ele={}
+  while a:
+    ele = a.pop()
+    uni_ele[ele] = uni_ele.get(ele,0)+1
+  while b:
+    ele= b.pop()
+    uni_ele[ele] = uni_ele.get(ele,0)+1
+    return len(uni_ele)
+a= [1,2,3,4,5]
+b=[1,2,3]
+print(find_union(a,b))
