@@ -10,3 +10,306 @@ def find_union(a,b):
 a= [1,2,3,4,5]
 b=[1,2,3]
 print(find_union(a,b))
+
+import numpy as np
+
+def reverse_Matrix(matrix):
+    n = matrix.shape[0]  # Get the size of the square matrix
+    new_matrix = np.zeros((n, n), dtype=matrix.dtype)
+
+    for i in range(n):
+        for j in range(n):
+            new_matrix[i][j] = matrix[n-1-i][n-1-j]
+
+    return new_matrix
+
+def print_matrix(matrix):
+    n = matrix.shape[0]
+    for i in range(n):
+        print("|", end="")
+        for j in range(n):
+            print(f" {matrix[i][j]:2d} ", end="|")
+        print()
+        print("-" * (5 * n + 1))
+
+# Test the function
+matrix = np.array([
+    [14,  8,  0,  4],
+    [9,  8,  13,  13],
+    [9,  3,  1,  4],
+    [2,  10,  13,  6]
+])
+
+print("Original Matrix:")
+print_matrix(matrix)
+
+reversed_matrix = reverse_Matrix(matrix)
+print("\nReversed Matrix:")
+print_matrix(reversed_matrix)
+
+import numpy as np
+
+def compress_matrix(mat):
+    rows, cols = mat.shape
+    new_rows = rows // 2
+    new_cols = cols // 2
+
+    compressed = np.zeros((new_rows, new_cols), dtype=int)
+
+    for i in range(0, rows, 2):
+        for j in range(0, cols, 2):
+            block_sum = (mat[i, j] + mat[i, j+1] +
+                         mat[i+1, j] + mat[i+1, j+1])
+            compressed[i//2, j//2] = block_sum
+
+    return compressed
+
+def print_matrix(matrix):
+    rows, cols = matrix.shape
+    for i in range(rows):
+        print("|", end="")
+        for j in range(cols):
+            print(f"  {matrix[i, j]:2d}  |", end="")
+        print("\n" + "-" * (7 * cols + 1))
+
+# Test the function
+matrix = np.array([
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [1, 3, 5, 2],
+    [-2, 0, 6, -3]
+])
+
+print("Original matrix:")
+print_matrix(matrix)
+
+returned_array = compress_matrix(matrix)
+
+print("\nCompressed matrix:")
+print_matrix(returned_array)
+
+m = np.array([[1,2],[3,4]])
+n= np.array([[10,10],[5,5]])
+rows,cols = m.shape
+print(m)
+for i in range(rows):
+  for j in range(cols):
+    m[i][j] += n[i][j]
+print(m)
+
+##right shifting
+arr= np.array([1,2,3,4])
+print(arr)
+
+def right_shift(arr):
+  n = len(arr)
+  last_element = arr[n-1]
+  for i in range(n-1, 0, -1):
+    arr[i] = arr[i-1]
+  arr[0] = last_element
+  return arr
+
+result = right_shift(arr)
+print(result)
+
+##left_shifting
+arr= np.array([1,2,3])
+print(arr)
+def left_shift(arr):
+  for i in range(len(arr)-1):
+    arr[i] =arr[i+1]
+  arr[(len(arr)-1)]=0
+  return arr
+
+
+print( left_shift(arr))
+
+##right rotate+ left rotate
+arr = np.array([1,2,3])
+print(arr)
+
+#def right_rotate(arr):
+ # b= arr[len(arr)-1]
+#  for i in range(len(arr)-1,0,-1):
+ #   arr[i]= arr[i-1]
+  #arr[0]= b
+  #return arr
+
+def left_rotate (arr):
+  b = arr[0]
+  for i in range(len(arr)-1):
+    arr[i] = arr[i+1]
+  arr[len(arr)-1] = b
+  return arr
+
+print(left_rotate(arr))
+
+import array as arr
+a = arr.array('i',[2,3,4,5,6])
+print("Array before insertion:" ,end=" ")
+for i in range(0,5):
+  print(a[i],end=" ")
+print()
+a.insert(2, 7)
+print("Array after insertion:", end=" ")
+for i in ((a)):
+  print(i,end=" ")
+
+b = arr.array('d', [2.5, 3.2, 3.3])
+print("Array before insertion : ", end=" ")
+for i in range(0, 3):
+    print(b[i], end=" ")
+print()
+b.append(4.4)
+print("Array after insertion : ", end=" ")
+for i in (b):
+    print(i, end=" ")
+print()
+
+import array as arr
+numbers = arr.array('i',[1,2,3,4,5])
+#changing the 1st elements
+#changing the 2nd to 4th elements
+numbers[0] = 0
+numbers[2:5] = arr.array('i',[6,7,8])
+print(numbers)
+
+import numpy as np
+
+def print_matrix(matrix):
+    rows, cols = matrix.shape
+    for row in range(rows):
+        row_str = ""
+        for col in range(cols):
+            row_str += matrix[row, col]
+            if col < cols - 1:
+                row_str += " "
+        print(row_str)
+
+def walk_zigzag(floor):
+
+
+    rows, cols = floor.shape
+    direction = 1  # 1 means moving down, -1 means moving up
+    col = 0
+
+    while col < cols:
+        if direction == 1:
+            # Move down
+            for row in range(rows):
+                if (col + row) % 2 == 0:  # Only step on black tiles
+                    print(floor[row, col], end=" ")
+            print()
+            direction = -1
+        else:
+            # Move up
+            for row in range(rows - 1, -1, -1):
+                if (col + row) % 2 == 0:  # Only step on black tiles
+                    print(floor[row, col], end=" ")
+            print()
+            direction = 1
+        col += 1
+
+# Sample Input 1
+
+floor1 = np.array([[ '3' , '8' , '4' , '6' , '1'],
+                   ['7' , '2' , '1' , '9' , '3'],
+                   ['9' , '0' , '7' , '5' , '8'],
+                   ['2' , '1' , '3' , '4' , '0'],
+                   ['1' , '4' , '2' , '8' , '6']])
+
+print_matrix(floor1)
+print('Walking Sequence:')
+walk_zigzag(floor1)
+
+
+
+
+# Sample Input 2
+floor2 = np.array([[ '3' , '8' , '4' , '6' , '1'],
+                   ['7' , '2' , '1' , '9' , '3'],
+                   ['9' , '0' , '7' , '5' , '8'],
+                   ['2' , '1' , '3' , '4' , '0']])
+
+print_matrix(floor2)
+print('Walking Sequence:')
+walk_zigzag(floor2)
+
+def row_rotation(exam_week, seat_status):
+    rows = 6
+    cols = 5
+
+    # Create a new 2D array for the rotated seating
+    rotated_seats = [['' for _ in range(cols)] for _ in range(rows)]
+
+    # Calculate the number of rotations
+    rotations = (exam_week - 1) % rows
+
+    # Perform the rotation
+    for i in range(rows):
+        new_row = (i + rotations) % rows
+        for j in range(cols):
+            rotated_seats[new_row][j] = seat_status[i][j]
+
+    # Find AA's position
+    aa_row_num = -1
+    for i in range(rows):
+        for j in range(cols):
+            if rotated_seats[i][j] == 'AA':
+                aa_row_num = i + 1  # Adding 1 because rows are 1-indexed in the output
+                break
+        if aa_row_num != -1:
+            break
+
+    # Print the rotated seating arrangement
+    for i in range(rows):
+        for j in range(cols):
+            print(rotated_seats[i][j], end='')
+            if j < cols - 1:
+                print(' ', end='')
+        print()
+
+    print(f"\nYour friend AA will be on row {aa_row_num}.")
+
+# Example usage
+exam_week = 3
+seat_status =np.array([
+    ['A', 'B', 'C', 'D', 'E'],
+    ['F', 'G', 'H', 'I', 'J'],
+    ['K', 'L', 'M', 'N', 'O'],
+    ['P', 'Q', 'R', 'S', 'T'],
+    ['U', 'V', 'W', 'X', 'Y'],
+    ['Z', 'AA', 'BB', 'CC', 'DD']
+])
+
+row_rotation(exam_week, seat_status)
+
+import numpy as np
+
+def find_duplicate(nums):
+
+    t = nums[0]
+    h = nums[0]
+
+    while True:
+        t = nums[t]
+        h = nums[nums[h]]
+        if t == h:
+            break
+
+
+    t = nums[0]
+    while t!= h:
+        t = nums[t]
+        h = nums[h]
+
+    return h
+
+# Driver code
+nums1 = np.array([1, 3, 4, 2, 2])
+nums2 = np.array([3, 1, 3, 4, 2])
+nums3 = np.array([3, 3, 3, 3, 3])
+
+print(f"Output for nums1: {find_duplicate(nums1)}")  # Output: 2
+print(f"Output for nums2: {find_duplicate(nums2)}")  # Output: 3
+print(f"Output for nums3: {find_duplicate(nums3)}")  # Output: 3
